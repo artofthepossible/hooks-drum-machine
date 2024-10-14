@@ -1,55 +1,38 @@
-import React, { useContext, useState } from 'react';
-import styled from 'styled-components';
-import { bufferResource } from './bufferResource';
+import React, { useState, useEffect } from 'react';
+import { useBufferResource } from './bufferResource'; // Correct import
+import * as Tone from 'tone';
+import Button from './Button.js'; // Correct import
 
-const Button = styled.button`
-  background: ${props => (props.held ? '#fd7272' : 'none')};
-  flex: 1;
-  border: 2px solid #fd7272;
-  color: ${props => (props.held ? 'black' : '#fd7272')};
-  display: inline-block;
-  font-size: 24px;
-  border-radius: 2;
-  padding: 20px;
-  font-family: 'Righteous', cursive;
-  margin: 2px;
-  &:active {
-    background: #fd7272;
-    color: black;
-  }
-`;
+const FX = ({ soundUrl, title }) => {
+  const { data, error } = useBufferResource(soundUrl);
+  const [player, setPlayer] = useState(null);
+  const [held, setHeld] = useState(false);
 
-export default function FX({ sound, title }) {
-  let [held, setHeld] = useState(false);
-  let buffer = bufferResource.read(sound);
-  buffer.volume.value = -8;
-
-  function playSound(e) {
-    if (held) {
-      setHeld(false);
-      buffer.stop();
+  useEffect(() => {
+    if (data) {
+      const newPlayer = new Tone.Player(data).toDestination();
+      newPlayer.volume.value = -8;
+      setPlayer(newPlayer);
     } else {
-      if (e.shiftKey) {
-        buffer.loop = true;
-        setHeld(true);
-      }
-      buffer.start();
+      console.error('Data is undefined');
     }
-  }
-  function stopSound() {
-    if (!held) {
-      buffer.stop();
+  }, [data]);
+
+  const handlePlay = () => {
+    if (player) {
+      player.start();
+    } else {
+      console.error('Player is undefined');
     }
-  }
+  };
+
   return (
-    <Button
-      held={held}
-      onMouseDown={playSound}
-      onTouchStart={playSound}
-      onTouchEnd={stopSound}
-      onMouseUp={stopSound}
-    >
-      {title}
-    </Button>
+    <div>
+      <h1>{title}</h1>
+      <Button onClick={handlePlay}>Play</Button>
+      {error && <p>Error loading sound</p>}
+    </div>
   );
-}
+};
+
+export default FX;

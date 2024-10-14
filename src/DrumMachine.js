@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+//import { useState, useEffect } from 'react';
+
 import styled from 'styled-components';
-import Tone from 'tone';
+//import Tone from 'tone';
+import * as Tone from 'tone';
 
 import useBPM from './useBPM';
 import useStart from './useStart';

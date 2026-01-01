@@ -20,5 +20,6 @@ export default function useBPM(initialBpm) {
   return [
     bpm,
     <BPM type="number" value={bpm} min="60" max="180" onChange={setBpm} />,
+    set, // Also return the setter for programmatic BPM changes
   ];
 }

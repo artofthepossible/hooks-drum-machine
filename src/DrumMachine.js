@@ -8,6 +8,8 @@ import StepContext from './StepContext';
 import Transport from './Transport';
 import StepSequencer from './StepSequencer';
 import Fx from './FX';
+import PromptInput from './PromptInput';
+import { parseBeatPrompt, generateDescription } from './beatParser';
 
 const Container = styled.div`
   max-width: 800px;
@@ -16,6 +18,7 @@ const Container = styled.div`
   border: 2px solid black;
   border-radius: 4px;
   margin-top: 20px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
 `;
@@ -68,7 +71,23 @@ export default function DrumMachine() {
   const [currentStep, setCurrentStepState] = useState(0);
 
   const [start, startButton] = useStart();
-  const [bpm, bpmSelector] = useBPM(65);
+  const [bpm, bpmSelector, setBPM] = useBPM(65);
+
+  // Handler for natural language beat generation
+  const handleGenerateBeat = (prompt) => {
+    const parseResult = parseBeatPrompt(prompt);
+    const { bpm: newBPM, pattern } = parseResult;
+
+    // Update BPM
+    setBPM(newBPM);
+
+    // Update step patterns
+    setSteps(pattern);
+
+    // Log the description for user feedback
+    const description = generateDescription(parseResult);
+    console.log(description);
+  };
 
   const buffersRef = useRef(buffers);
   buffersRef.current = buffers;
@@ -132,6 +151,7 @@ export default function DrumMachine() {
           {bpmSelector}
           {startButton}
         </Transport>
+        <PromptInput onGenerate={handleGenerateBeat} />
         <React.Suspense fallback={<p>loading</p>}>
           <StepSequencer
             config={config}

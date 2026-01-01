@@ -147,7 +147,7 @@ export default function DrumMachine() {
     <StepContext.Provider value={{ state: stepState, setSteps }}>
       <Container>
         <Transport>
-          <Logo>Trap Lord 9000</Logo>
+          <Logo>Ai Drummer 9000</Logo>
           {bpmSelector}
           {startButton}
         </Transport>

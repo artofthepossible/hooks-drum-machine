@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Trap Lord 9000 drum machine now features a Suno-inspired natural language prompt system that allows you to describe beats in plain English and have them automatically generated on the step sequencer.
+The Ai Drummer 9000 drum machine now features a Suno-inspired natural language prompt system that allows you to describe beats in plain English and have them automatically generated on the step sequencer.
 
 ## How to Use
 
@@ -200,4 +200,4 @@ The natural language prompt system consists of:
 
 ## Credits
 
-Built for the Trap Lord 9000 drum machine, inspired by Suno AI's innovative approach to democratizing music creation through natural language interfaces.
+Built for the Ai Drummer 9000 drum machine, inspired by Suno AI's innovative approach to democratizing music creation through natural language interfaces.

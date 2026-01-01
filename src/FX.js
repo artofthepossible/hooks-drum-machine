@@ -4,23 +4,21 @@ import { useBufferResource } from './bufferResource';
 import * as Tone from 'tone';
 import Button from './Button.js';
 
-const FX = ({ soundUrl, title }) => {
-  const { data, error } = useBufferResource(soundUrl);
+const FX = ({ sound, title }) => {
+  const { buffer, error } = useBufferResource(sound);
   const [player, setPlayer] = useState(null);
 
   useEffect(() => {
-    if (data) {
+    if (buffer) {
       try {
-        const newPlayer = new Tone.Player(data).toDestination();
+        const newPlayer = new Tone.Player(buffer).toDestination();
         newPlayer.volume.value = -8;
         setPlayer(newPlayer);
       } catch (e) {
         console.error('Error initializing player:', e);
       }
-    } else {
-      console.error('Data is undefined');
     }
-  }, [data]);
+  }, [buffer]);
 
   const handlePlay = () => {
     try {

@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-//import { useState, useEffect } from 'react';
-
 import styled from 'styled-components';
-//import Tone from 'tone';
 import * as Tone from 'tone';
 
 import useBPM from './useBPM';
@@ -82,7 +79,7 @@ export default function DrumMachine() {
 
   useEffect(
     () => {
-      Tone.Transport.scheduleRepeat(function(time) {
+      const repeatId = Tone.Transport.scheduleRepeat(function(time) {
         Object.keys(buffersRef.current).forEach(b => {
           let targetStep = stepsRef.current[b][currentStepRef.current];
           let targetBuffer = buffersRef.current[b];
@@ -100,8 +97,12 @@ export default function DrumMachine() {
           return step > 14 ? 0 : step + 1;
         });
       }, '16n');
+
+      return () => {
+        Tone.Transport.clear(repeatId);
+      };
     },
-    [config]
+    []
   );
 
   useEffect(

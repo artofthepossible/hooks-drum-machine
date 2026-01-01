@@ -5,6 +5,7 @@ A modern, browser-based drum machine and step sequencer built with React Hooks a
 ## What It Does
 
 Ai Drummer 9000 is a fully functional 16-step drum sequencer with:
+
 - **7 Drum Tracks**: Kick, Sub Bass 1, Sub Bass 2, Snare, Clap, Hi-Hat, and Open Hi-Hat
 - **16-Step Sequencer**: Create patterns with 16th-note resolution
 - **Natural Language Beat Generation**: Describe beats in plain English (e.g., "fast trap beat with heavy 808 kicks")

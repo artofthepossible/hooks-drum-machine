@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import * as Tone from 'tone';
 
 import Steps from './Steps';
+import { useBufferResource } from './bufferResource';
 
 const Wrapper = styled.div`
   display: flex;
@@ -25,16 +27,30 @@ const Name = styled.h2`
   line-height: 50px;
 `;
 
-export default function Track({ buffer, name, setBuffers }) {
-  useEffect(
-    () => {
+export default function Track({ sampleUrl, name, setBuffers }) {
+  const { buffer, error } = useBufferResource(sampleUrl);
+  const [player, setPlayer] = useState(null);
+
+  useEffect(() => {
+    if (buffer) {
+      try {
+        const newPlayer = new Tone.Player(buffer).toDestination();
+        setPlayer(newPlayer);
+      } catch (e) {
+        console.error('Error initializing player:', e);
+      }
+    }
+  }, [buffer]);
+
+  useEffect(() => {
+    if (player) {
       setBuffers(buffers => ({
         ...buffers,
-        [name]: buffer,
+        [name]: player,
       }));
-    },
-    [buffer]
-  );
+    }
+  }, [player, name, setBuffers]);
+
   return (
     <Wrapper>
       <Info>

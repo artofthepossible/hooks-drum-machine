@@ -14,7 +14,7 @@ const BPM = styled.input`
   align-self: center;
 `;
 
-export default function useStart(initialBpm) {
+export default function useBPM(initialBpm) {
   const [bpm, set] = useState(initialBpm);
   const setBpm = e => set(e.target.value);
   return [

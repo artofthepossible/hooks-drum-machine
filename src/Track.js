@@ -28,7 +28,7 @@ const Name = styled.h2`
 `;
 
 export default function Track({ sampleUrl, name, setBuffers }) {
-  const { buffer, error } = useBufferResource(sampleUrl);
+  const { buffer } = useBufferResource(sampleUrl);
   const [player, setPlayer] = useState(null);
 
   useEffect(() => {

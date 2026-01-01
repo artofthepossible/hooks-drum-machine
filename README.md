@@ -1,22 +1,11 @@
-# Ai Drummer 9000
+# Ai Drummer 9000 🥁
 
-A React-powered step sequencer with natural language beat generation, built with React Hooks and Tone.js.
+A modern, browser-based drum machine and step sequencer built with React Hooks and Tone.js. Features an innovative natural language prompt system inspired by Suno AI that lets you describe beats in plain English and have them automatically generated.
 
-## Quick Start
+## What It Does
 
-```bash
-npm install
-npm start
-```
-
-Open [http://localhost:3000](http://localhost:3000) to start making beats!
-
-## What is This?
-
-Ai Drummer 9000 is a web-based drum machine that combines traditional step sequencing with modern AI-inspired natural language prompts. Just describe the beat you want in plain English, and watch it come to life on the 16-step grid.
-
-**Key Features:**
-- **7 Drum Tracks**: Kick, snare, closed hat, open hat, low tom, mid tom, hi tom
+Ai Drummer 9000 is a fully functional 16-step drum sequencer with:
+- **7 Drum Tracks**: Kick, Sub Bass 1, Sub Bass 2, Snare, Clap, Hi-Hat, and Open Hi-Hat
 - **16-Step Sequencer**: Create patterns with 16th-note resolution
 - **Natural Language Beat Generation**: Describe beats in plain English (e.g., "fast trap beat with heavy 808 kicks")
 - **BPM Control**: Adjustable tempo from 60-180 BPM

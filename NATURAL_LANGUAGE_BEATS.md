@@ -200,4 +200,4 @@ The natural language prompt system consists of:
 
 ## Credits
 
-Built for the Trap Lord 9000 drum machine, inspired by Suno AI's innovative approach to democratizing music creation through natural language interfaces.
+Built for the Ai Drummer 9000 drum machine, inspired by Suno AI's innovative approach to democratizing music creation through natural language interfaces.
